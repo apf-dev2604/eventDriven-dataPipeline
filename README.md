@@ -1,4 +1,4 @@
-# ETL Blueprint - Production 
+# ETL Blueprint 
 
 This package contains the updated production design for ETL pipeline with:
 
