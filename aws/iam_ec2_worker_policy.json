@@ -1,0 +1,23 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "SQSWorkerAccess",
+      "Effect": "Allow",
+      "Action": ["sqs:ReceiveMessage", "sqs:DeleteMessage", "sqs:ChangeMessageVisibility", "sqs:GetQueueAttributes", "sqs:GetQueueUrl"],
+      "Resource": ["arn:aws:sqs:REGION:ACCOUNT_ID:nexus-v2-s3-events", "arn:aws:sqs:REGION:ACCOUNT_ID:nexus-v2-s3-events-dlq"]
+    },
+    {
+      "Sid": "S3RawReadAccess",
+      "Effect": "Allow",
+      "Action": ["s3:GetObject", "s3:ListBucket"],
+      "Resource": ["arn:aws:s3:::nexus-v2-raw-prod", "arn:aws:s3:::nexus-v2-raw-prod/*"]
+    },
+    {
+      "Sid": "CloudWatchLogs",
+      "Effect": "Allow",
+      "Action": ["logs:CreateLogGroup", "logs:CreateLogStream", "logs:PutLogEvents"],
+      "Resource": "*"
+    }
+  ]
+}

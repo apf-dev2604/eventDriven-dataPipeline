@@ -1,0 +1,18 @@
+Category,Request Item,Owner,Priority,Notes
+AWS,S3 raw bucket,Cloud Team,High,Private bucket with block public access
+AWS,KMS key,Security/Cloud Team,High,For S3 encryption
+AWS,SQS queue,Cloud Team,High,S3 ObjectCreated target
+AWS,SQS DLQ,Cloud Team,High,For failed messages
+AWS,S3 event notification,Cloud Team,High,Prefix raw/ suffix .jsonl.gz
+AWS,EC2 worker or container host,Infrastructure,High,Private subnet preferred
+AWS,IAM EC2 worker role,Security/Cloud Team,High,Least privilege only
+AWS,Secrets Manager or SSM,Security/Cloud Team,High,DB/API secrets
+Network,DB inbound from worker,Network/DBA,High,PostgreSQL 5432 from worker SG only
+Network,Provider API egress,Network,High,Allowlist NAT IP if provider requires
+Database,Create schemas,DBA,High,etl/raw/staging/rejected/final_history
+Database,Create application roles,DBA,High,nexus_dumper/nexus_worker/nexus_readonly
+Database,Run SQL scripts,DBA,High,Follow README order
+Monitoring,CloudWatch logs,Cloud Team,Medium,Worker and API dumper logs
+Monitoring,CloudTrail,Security,Medium,Audit AWS API actions
+CDC,CDC source assessment,DBA/Security,High if CDC included,Separate approval required
+CDC,Replication permissions,DBA/Security,High if CDC included,Depends on source DB engine

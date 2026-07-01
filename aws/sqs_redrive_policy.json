@@ -1,0 +1,8 @@
+{
+  "RedrivePolicy": {
+    "deadLetterTargetArn": "arn:aws:sqs:REGION:ACCOUNT_ID:nexus-v2-s3-events-dlq",
+    "maxReceiveCount": "5"
+  },
+  "VisibilityTimeout": "900",
+  "ReceiveMessageWaitTimeSeconds": "20"
+}

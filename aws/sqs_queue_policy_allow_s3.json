@@ -1,0 +1,17 @@
+{
+  "Version": "2012-10-17",
+  "Id": "AllowS3SendMessage",
+  "Statement": [
+    {
+      "Sid": "AllowS3BucketToSendMessage",
+      "Effect": "Allow",
+      "Principal": {"Service": "s3.amazonaws.com"},
+      "Action": "sqs:SendMessage",
+      "Resource": "arn:aws:sqs:REGION:ACCOUNT_ID:nexus-v2-s3-events",
+      "Condition": {
+        "ArnEquals": {"aws:SourceArn": "arn:aws:s3:::nexus-v2-raw-prod"},
+        "StringEquals": {"aws:SourceAccount": "ACCOUNT_ID"}
+      }
+    }
+  ]
+}

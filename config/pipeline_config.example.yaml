@@ -1,0 +1,43 @@
+aws:
+  region: "ap-southeast-1"
+  sqs_queue_url: "https://sqs.ap-southeast-1.amazonaws.com/123456789012/nexus-v2-s3-events"
+  visibility_timeout_seconds: 900
+  wait_time_seconds: 20
+  max_messages: 1
+  idle_sleep_seconds: 2
+
+database:
+  dsn: "postgresql://nexus_worker:REPLACE_WITH_SECRET@DB_HOST:5432/DB_NAME?sslmode=require"
+  connect_timeout_seconds: 10
+
+worker:
+  name: "nexus-v2-worker-01"
+  chunk_size: 5000
+  max_retries_before_dlq: 5
+
+api_dumper:
+  default_current_frequency_minutes: 5
+  current_overlap_minutes: 10
+  safety_delay_minutes: 5
+  rolling_lookback_days: 3
+  lookback_slice_minutes: 60
+  max_lookback_slices_per_run: 2
+  write_format: "jsonl.gz"
+  require_full_pagination_for_delete: true
+
+delete_reconciliation:
+  enabled: true
+  allowed_run_types:
+    - "createddate_snapshot"
+    - "manual_replay_snapshot"
+  soft_delete_only: true
+  write_delete_history_first: true
+
+adapters:
+  inplay:
+    gameTx: "adapters.impala2_adapter:Impala2GameTxAdapter"
+    deposits: "adapters.impala2_adapter:Impala2WalletAdapter"
+    withdrawals: "adapters.impala2_adapter:Impala2WalletAdapter"
+    players: "adapters.impala2_adapter:Impala2PlayerAdapter"
+  impala1:
+    gameTx: "adapters.impala1_adapter:Impala1GameTxAdapter"

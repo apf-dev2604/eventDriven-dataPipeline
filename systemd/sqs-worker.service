@@ -1,0 +1,18 @@
+[Unit]
+Description=Nexus V2 SQS Worker
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=ec2-user
+WorkingDirectory=/opt/nexus-v2/app
+Environment=NEXUS_CONFIG=/etc/nexus-v2/pipeline_config.yaml
+ExecStart=/opt/nexus-v2/venv/bin/python /opt/nexus-v2/app/sqs_worker.py
+Restart=always
+RestartSec=10
+KillSignal=SIGTERM
+TimeoutStopSec=60
+
+[Install]
+WantedBy=multi-user.target

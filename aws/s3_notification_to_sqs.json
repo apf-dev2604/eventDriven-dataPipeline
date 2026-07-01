@@ -1,0 +1,10 @@
+{
+  "QueueConfigurations": [
+    {
+      "Id": "NexusV2RawObjectCreatedToSQS",
+      "QueueArn": "arn:aws:sqs:REGION:ACCOUNT_ID:nexus-v2-s3-events",
+      "Events": ["s3:ObjectCreated:*"],
+      "Filter": {"Key": {"FilterRules": [{"Name": "prefix", "Value": "raw/"}, {"Name": "suffix", "Value": ".jsonl.gz"}]}}
+    }
+  ]
+}
