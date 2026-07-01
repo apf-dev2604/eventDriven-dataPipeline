@@ -1,6 +1,6 @@
-# Nexus V2 ETL Blueprint - Production Hardened V3
+# ETL Blueprint - Production 
 
-This package contains the updated production design for Nexus V2 ETL with:
+This package contains the updated production design for ETL pipeline with:
 
 - dynamic brand/entity date rules,
 - 5-minute current pulls,
